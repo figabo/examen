@@ -1,0 +1,39 @@
+<section>
+  <div class="page-header">
+    <h1>
+      Productos
+    </h1>
+  </div>
+
+  <div class="row" style="width: 50%; padding-left: 15px">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Buscar" ng-model="searchText">
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Color</th>
+        <th scope="col">Disponibilidad</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr data-ng-repeat="(index, product) in vm.products | filter:searchText">
+        <th scope="row">{{index}}</th>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.type.toLowerCase() === 'p' ? 'Producto' : 'Servicio' }}</td>
+        <td>{{product.color ? product.color : '-'}}</td>
+        <td>{{product.availability ? 'Si' : 'No'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

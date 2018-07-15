@@ -1,0 +1,48 @@
+﻿<section>
+  <div class="page-header">
+    <h1>
+      Productos
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.products.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h1>
+  </div>
+
+  <div class="row" style="width: 50%; padding-left: 15px">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Buscar" ng-model="searchText">
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Color</th>
+        <th scope="col">Disponibilidad</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr data-ng-repeat="(index, product) in vm.products | filter:searchText">
+        <th scope="row">{{index+1}}</th>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.type.toLowerCase() === 'p' ? 'Producto' : 'Servicio' }}</td>
+        <td>{{product.color ? product.color : '-'}}</td>
+        <td>{{product.availability ? 'Si' : 'No'}}</td>
+        <td>
+          <a class="btn btn-primary" data-ui-sref="admin.products.edit({productId: product._id})">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

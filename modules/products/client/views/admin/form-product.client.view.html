@@ -1,0 +1,61 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.product._id ? vm.product.description : 'Nuevo producto'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.productForm" class="form-horizontal" ng-submit="vm.save(vm.form.productForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="description">Descripción</label>
+
+          <input name="description" type="text" ng-model="vm.product.description" id="description" class="form-control" placeholder="Descripción" required autofocus>
+
+          <div ng-messages="vm.form.productForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Es requerido.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="price">Precio</label>
+
+          <input name="price" type="number" ng-model="vm.product.price" id="price" class="form-control" placeholder="Precio" required pattern="[0-9]+([\.][0-9]+)?" >
+
+          <div ng-messages="vm.form.productForm.price.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Es requerido.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="type">Tipo</label>
+
+          <select name="type" class="form-control" id="type" ng-model="vm.product.type">
+            <option value="" selected="selected">Seleccione una opción</option>
+            <option value="p">Producto</option>
+            <option value="s">servicio</option>
+          </select>
+
+          <div ng-messages="vm.form.productForm.type.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Es requerido.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="color">Color</label>
+
+          <input name="color" type="text" ng-model="vm.product.color" id="color" class="form-control" placeholder="Color">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="availability">Disponibilidad</label>
+
+          <input name="availability" class="form-check-input" ng-model="vm.product.availability" type="checkbox" id="availability">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Guardar</button>
+          <a class="btn btn-danger" ng-hide="!vm.product._id" ng-click="vm.remove()">Eliminar</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
